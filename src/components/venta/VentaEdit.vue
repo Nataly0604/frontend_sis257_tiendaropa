@@ -80,7 +80,7 @@ function goBack() {
           <select class="form-select" v-model="venta.cliente" required>
             <option value="" disabled>Seleccione un cliente</option>
             <option v-for="cliente in clientes" :key="cliente.id" :value="cliente">
-              {{ cliente.nombres }}
+              {{ cliente.nombre }}
             </option>
           </select>
           <label for="cliente">Cliente</label>

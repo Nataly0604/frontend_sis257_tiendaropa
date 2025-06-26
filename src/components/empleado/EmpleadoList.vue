@@ -32,8 +32,8 @@ async function obtenerLista() {
     ...e,
     usuario: e.usuario // Si ya viene embebido
       ? e.usuario
-      : usuarios.value.find((u) => u.id === e.idUsuario || u.id === e.usuarioId) || {
-          nombreUsuario: 'Sin usuario',
+      : usuarios.value.find((u) => u.idUsuario === e.idUsuario || u.idUsuario === e.usuarioId) || {
+          Nombreusuario: 'Sin usuario',
         },
   }))
 }

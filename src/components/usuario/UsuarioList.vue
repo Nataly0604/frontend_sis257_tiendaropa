@@ -59,20 +59,18 @@ onMounted(() => {
             <tr>
               <th>N°</th>
               <th>Nombre de Usuario</th>
-              <th>E-mail</th>
               <th>Acción</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(usuario, index) in usuariosPaginados.values()" :key="usuario.id">
+            <tr v-for="(usuario, index) in usuariosPaginados.values()" :key="usuario.idUsuario">
               <td>{{ usuarios.indexOf(usuario) + 1 }}</td>
-              <td class="username-cell">{{ usuario.nombreUsuario }}</td>
-              <td class="email-cell">{{ usuario.email }}</td>
+              <td class="username-cell">{{ usuario.Nombreusuario }}</td>
               <td class="actions-cell">
-                <button class="action-btn edit-btn" @click="toEdit(usuario.id)">
+                <button class="action-btn edit-btn" @click="toEdit(usuario.idUsuario)">
                   <font-awesome-icon icon="fa-solid fa-edit" title="Editar" />
                 </button>
-                <button class="action-btn delete-btn" @click="toDelete(usuario.id)">
+                <button class="action-btn delete-btn" @click="toDelete(usuario.idUsuario)">
                   <font-awesome-icon icon="fa-solid fa-trash" title="Eliminar" />
                 </button>
               </td>

@@ -35,10 +35,10 @@ watch(
 async function handleSave() {
   try {
     const body = {
-      nombreUsuario: usuario.value.nombreUsuario,
+      Nombreusuario: usuario.value.Nombreusuario,
     }
     if (props.modoEdicion) {
-      await http.patch(`${ENDPOINT}/${usuario.value.id}`, body)
+      await http.patch(`${ENDPOINT}/${usuario.value.idUsuario}`, body)
     } else {
       await http.post(ENDPOINT, body)
     }
@@ -61,8 +61,8 @@ async function handleSave() {
       <div class="flex items-center gap-4 mb-4">
         <label for="nombre" class="font-semibold w-4">Nombre de Usuario</label>
         <InputText
-          id="nombreUsuario"
-          v-model="usuario.nombreUsuario"
+          id="Nombreusuario"
+          v-model="usuario.Nombreusuario"
           class="flex-auto"
           autocomplete="off"
           autofocus

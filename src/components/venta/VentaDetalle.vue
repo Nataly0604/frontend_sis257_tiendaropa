@@ -127,7 +127,7 @@ function formatCurrency(amount: string): string {
                   :src="detalle.producto.imagenes"
                   :alt="detalle.producto.nombre"
                   class="producto-imagen"
-                  @error="$event.target.src = '/qr-placeholder.svg'"
+                  @error="(e) => { const target = e.target as HTMLImageElement | null; if (target) target.src = '/qr-placeholder.svg' }"
                 />
               </td>
               <td class="descripcion-cell">

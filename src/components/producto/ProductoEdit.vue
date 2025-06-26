@@ -25,6 +25,8 @@ const producto = ref<Producto>({
   imagenes: '',
   fechaCreacion: '',
   fechaModificacion: '',
+  fechaEliminacion: null,
+  idCategoria: 0,
   categoria: {
     id: 0,
     nombre: '',
@@ -36,7 +38,13 @@ const categorias = ref<Categoria[]>([])
 async function cargarProducto() {
   try {
     const response = await http.get(`${ENDPOINT}/${route.params.id}`)
-    producto.value = response.data
+    const data = response.data
+    producto.value = {
+      ...data,
+      fechaEliminacion: data.fechaEliminacion ?? null,
+      idCategoria: data.idCategoria ?? (data.categoria?.id ?? 0),
+      categoria: data.categoria ?? { id: 0, nombre: '' },
+    }
   } catch (error) {
     console.error('Error al cargar el producto:', error)
   }

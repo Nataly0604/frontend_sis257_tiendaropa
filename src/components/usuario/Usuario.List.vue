@@ -32,7 +32,7 @@ function mostrarEliminarConfirm(usuario: Usuario) {
 async function eliminar() {
   try {
     if (usuarioDelete.value) {
-      await http.delete(`${ENDPOINT}/${usuarioDelete.value.id}`)
+      await http.delete(`${ENDPOINT}/${usuarioDelete.value.idUsuario}`)
       obtenerLista()
       mostrarConfirmDialog.value = false
     }
@@ -62,22 +62,14 @@ function formatDate(dateString: string): string {
         <tr>
           <th>Nro.</th>
           <th>Nombre de Usuario</th>
-          <th>Fecha de Registro</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(usuario, index) in usuarios" :key="usuario.id">
+        <tr v-for="(usuario, index) in usuarios" :key="usuario.idUsuario">
           <td>{{ index + 1 }}</td>
-          <td>{{ usuario.nombreUsuario }}</td>
-          <td>{{ formatDate(usuario.fechaCreacion) }}</td>
+          <td>{{ usuario.Nombreusuario }}</td>
           <td>
-            <!-- <Button
-              icon="pi pi-pencil"
-              aria-label="Editar"
-              text
-              @click="emitirEdicion(usuario)"
-            /> -->
             <Button
               icon="pi pi-trash"
               aria-label="Eliminar"

@@ -15,8 +15,15 @@ const producto = ref<Producto>({
   id: 0,
   nombre: '',
   descripcion: '',
-  precioUnitario: 0,
+  precio: 0,
   stock: 0,
+  talla: '',
+  color: '',
+  imagenes: '',
+  fechaCreacion: '',
+  fechaModificacion: '',
+  fechaEliminacion: null,
+  idCategoria: 0,
   categoria: {
     id: 0,
     nombre: '',
@@ -31,7 +38,7 @@ async function crearProducto() {
       idCategoria: producto.value.categoria.id,
       nombre: producto.value.nombre,
       descripcion: producto.value.descripcion,
-      precioUnitario: producto.value.precioUnitario,
+      precio: producto.value.precio,
       stock: producto.value.stock,
     })
     router.push('/productos')
@@ -107,11 +114,11 @@ function goBack() {
             <input
               type="number"
               class="form-control"
-              v-model="producto.precioUnitario"
-              placeholder="Precio Unitario"
+              v-model="producto.precio"
+              placeholder="Precio"
               required
             />
-            <label for="precioUnitario">Precio Unitario</label>
+            <label for="precio">Precio</label>
           </div>
         </div>
 

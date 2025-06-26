@@ -55,7 +55,7 @@ function agregarNotificacion(notificacion: Omit<Notificacion, 'id'>) {
   notificaciones.value.push(nuevaNotificacion)
 
   // Auto cerrar después de la duración especificada
-  if (nuevaNotificacion.duracion > 0) {
+  if (typeof nuevaNotificacion.duracion === 'number' && nuevaNotificacion.duracion > 0) {
     setTimeout(() => {
       cerrarNotificacion(id)
     }, nuevaNotificacion.duracion)

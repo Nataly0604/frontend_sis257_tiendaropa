@@ -10,11 +10,14 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 
-const empleado = ref<Empleado>({
+const empleado = ref<Empleado & { usuario?: Usuario }>({
   id: 0,
-  nombres: '',
-  apellidos: '',
+  nombre: '',
+  apellido: '',
+  telefono: '',
+  direccion: '',
   cargo: '',
+  usuario: undefined,
 })
 
 const usuarios = ref<Usuario[]>([])
@@ -24,9 +27,11 @@ const emit = defineEmits(['saved'])
 async function crearEmpleado() {
   try {
     await http.post(ENDPOINT, {
-      idUsuario: empleado.value.usuario.id,
-      nombres: empleado.value.nombres,
-      apellidos: empleado.value.apellidos,
+      idUsuario: empleado.value.usuario?.idUsuario,
+      nombre: empleado.value.nombre,
+      apellido: empleado.value.apellido,
+      telefono: empleado.value.telefono,
+      direccion: empleado.value.direccion,
       cargo: empleado.value.cargo,
     })
     emit('saved')
@@ -57,8 +62,8 @@ onMounted(getUsuarios)
         <div class="form-floating mb-3">
           <select class="form-select" v-model="empleado.usuario" required>
             <option value="" disabled>Seleccione un usuario</option>
-            <option v-for="usuario in usuarios" :key="usuario.id" :value="usuario">
-              {{ usuario.nombreUsuario }}
+            <option v-for="usuario in usuarios" :key="usuario.idUsuario" :value="usuario">
+              {{ usuario.Nombreusuario }}
             </option>
           </select>
           <label for="usuario">Usuario</label>
@@ -67,21 +72,41 @@ onMounted(getUsuarios)
           <input
             type="text"
             class="form-control"
-            v-model="empleado.nombres"
-            placeholder="Nombres"
+            v-model="empleado.nombre"
+            placeholder="Nombre"
             required
           />
-          <label for="nombres">Nombres</label>
+          <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-2">
           <input
             type="text"
             class="form-control"
-            v-model="empleado.apellidos"
-            placeholder="Apellidos"
+            v-model="empleado.apellido"
+            placeholder="Apellido"
             required
           />
-          <label for="apellidos">Apellidos</label>
+          <label for="apellido">Apellido</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="empleado.telefono"
+            placeholder="Teléfono"
+            required
+          />
+          <label for="telefono">Teléfono</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            v-model="empleado.direccion"
+            placeholder="Dirección"
+            required
+          />
+          <label for="direccion">Dirección</label>
         </div>
         <div class="form-floating mb-2">
           <input

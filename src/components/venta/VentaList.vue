@@ -78,8 +78,6 @@ function formatDate(dateString: string): string {
             <th>Total Venta (Bs.)</th>
             <th>Método de Pago</th>
             <th>Estado</th>
-            <th>Monto Pagado (Bs.)</th>
-            <th>Cambio (Bs.)</th>
             <th>Fecha de Venta</th>
             <th>Acciones</th>
           </tr>
@@ -104,23 +102,7 @@ function formatDate(dateString: string): string {
               {{ venta.estado }}
             </td>
             <td>
-              {{
-                venta.montoPagado?.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-              }}
-            </td>
-            <td>
-              {{
-                venta.cambio?.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-              }}
-            </td>
-            <td>
-              {{ formatDate(venta.fechaCreacion) }}
+              {{ formatDate(typeof venta.fechaCreacion === 'string' ? venta.fechaCreacion : venta.fechaCreacion.toISOString()) }}
             </td>
             <td class="actions-cell">
               <Button
@@ -147,7 +129,7 @@ function formatDate(dateString: string): string {
             </td>
           </tr>
           <tr v-if="ventasPaginadas.length === 0">
-            <td colspan="8" class="no-data">No hay datos disponibles</td>
+            <td colspan="6" class="no-data">No hay datos disponibles</td>
           </tr>
         </tbody>
       </table>
@@ -180,7 +162,7 @@ function formatDate(dateString: string): string {
 
     <VentaDetalle
       :mostrar="mostrarDetalleDialog"
-      :venta-id="ventaDetalleId"
+      :venta-id="ventaDetalleId ?? undefined"
       @close="cerrarDetalles"
     />
   </div>

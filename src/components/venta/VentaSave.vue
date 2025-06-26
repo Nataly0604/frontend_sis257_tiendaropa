@@ -119,20 +119,20 @@ watch(
 
 function agregarDetalle() {
   if (detalle.value.producto && detalle.value.cantidad > 0) {
-    detalle.value.subtotal = detalle.value.cantidad * detalle.value.precioUnitario
+    detalle.value.subtotal = (detalle.value.cantidad * detalle.value.precioUnitario).toString()
     venta.value.ventaDetalles.push({
       ...detalle.value,
       id: 0,
-      venta: undefined,
+      venta: {} as any, // Se debe asignar un objeto Venta válido, aquí se usa un placeholder
     })
-    venta.value.totalVenta = venta.value.ventaDetalles.reduce((sum, d) => sum + d.subtotal, 0)
+    venta.value.totalVenta = venta.value.ventaDetalles.reduce((sum, d) => sum + Number(d.subtotal), 0)
     detalle.value = { producto: null, cantidad: 1, precioUnitario: 0, subtotal: 0 }
   }
 }
 
 function eliminarDetalle(index: number) {
   venta.value.ventaDetalles.splice(index, 1)
-  venta.value.totalVenta = venta.value.ventaDetalles.reduce((sum, d) => sum + d.subtotal, 0)
+  venta.value.totalVenta = venta.value.ventaDetalles.reduce((sum, d) => sum + Number(d.subtotal), 0)
 }
 
 async function handleSave() {
