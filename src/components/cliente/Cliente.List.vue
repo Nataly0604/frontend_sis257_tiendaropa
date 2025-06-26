@@ -65,7 +65,6 @@ function formatDate(dateString: string): string {
             <th>Apellidos</th>
             <th>Direccion</th>
             <th>Celular</th>
-            <th>Email</th>
             <th>Fecha de Registro</th>
             <th>Acciones</th>
           </tr>
@@ -77,7 +76,6 @@ function formatDate(dateString: string): string {
             <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.direccion }}</td>
             <td>{{ cliente.telefono }}</td>
-            <td>{{ cliente.email }}</td>
             <td>{{ formatDate(cliente.fechaCreacion) }}</td>
             <td class="actions-cell">
               <Button
