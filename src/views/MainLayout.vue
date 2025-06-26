@@ -1,4 +1,4 @@
-<template >
+<template>
   <div>
     <Navbar />
     <main>
@@ -7,6 +7,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Navbar from './home/Navbar.vue'
 </script>
